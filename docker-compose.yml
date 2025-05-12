@@ -13,7 +13,7 @@ services:
       - db
     volumes:
       - ./backend:/app
-    # 🔥 Removido: command: uvicorn ...
+    command: ["./wait-for-it.sh", "db", "5432", "--", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 
   frontend:
     build: ./frontend
